@@ -1,5 +1,5 @@
 #define Out_x 2
-#define Out_y 0
+#define Out_y 15
 #define Out_z 4
 
 void setup() {
@@ -22,12 +22,12 @@ void loop() {
   float ms2 = 9.80665;
 
   // 電源電圧3.3V時のオフセット電圧
-  float offset_voltage = 1.650;
+  float offset_voltage = 1650.0;
 
   // XYZの電圧を取得する
-  float x = (analogRead(Out_x)/1024.0)*5.0*1000;
-  float y = (analogRead(Out_y)/1024.0)*5.0*1000;
-  float z = (analogRead(Out_z)/1024.0)*5.0*1000;
+  float x = (analogRead(Out_x)/1024.0)*3.3*1000;
+  float y = (analogRead(Out_y)/1024.0)*3.3*1000;
+  float z = (analogRead(Out_z)/1024.0)*3.3*1000;
 
   // XYZからオフセット電圧を引いた電圧を求める
   x = x - offset_voltage;
@@ -42,9 +42,9 @@ void loop() {
   // XYZの重力から加速度を算出して出力する
   Serial.print("X:");
   Serial.print(xg*ms2);
-  Serial.print("Y:");
+  Serial.print(",Y:");
   Serial.print(yg*ms2);
-  Serial.print("Z:");
+  Serial.print(",Z:");
   Serial.println(zg*ms2);
   delay(100);
   
